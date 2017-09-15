@@ -1,0 +1,17 @@
+{
+  "height": 3,
+  "width" : 3,
+  "horizontal_walls":[
+    [false,true,true,true],
+    [true,true,false,true],
+    [true,false,true,true],
+    [true,true,true,false]
+    ],
+    
+  "vertical_walls":[
+    [false,true,true,true],
+    [true,true,false,true],
+    [true,false,true,true],
+    [true,true,true,false]
+    ]
+}

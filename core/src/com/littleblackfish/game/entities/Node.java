@@ -27,7 +27,8 @@ public class Node {
     }
 
     public void setTopNode(Node topNode) {
-        topNode.bottomNode = this;
+        if(topNode!=null)
+            topNode.bottomNode = this;
         this.topNode = topNode;
     }
 
@@ -36,7 +37,8 @@ public class Node {
     }
 
     public void setBottomNode(Node bottomNode) {
-        bottomNode.topNode = this;
+        if(bottomNode!=null)
+            bottomNode.topNode = this;
         this.bottomNode = bottomNode;
     }
 
@@ -45,7 +47,8 @@ public class Node {
     }
 
     public void setRightNode(Node rightNode) {
-        rightNode.leftNode = this;
+        if(rightNode!=null)
+            rightNode.leftNode = this;
         this.rightNode = rightNode;
     }
 
@@ -54,7 +57,8 @@ public class Node {
     }
 
     public void setLeftNode(Node leftNode) {
-        leftNode.rightNode = this;
+        if(leftNode!=null)
+            leftNode.rightNode = this;
         this.leftNode = leftNode;
     }
 
@@ -65,14 +69,15 @@ public class Node {
         this.bottomNode = bottom;
         this.leftNode = left;
         this.rightNode = right;
-
+        this.x = x;
+        this.y = y;
     }
 
     public static Node horizontalWall(int x , int y , Maze maze){
         Node hw = new Node(NodeType.HORIZONTAL_WALL,x,y,null,null,null,null);
-        if(y<maze.getHeight())
-            hw.setTopNode(maze.getCells()[y+1][x]);
-        if(y>0)
+        if(y<maze.getHeight() && maze.getCells()[y][x]!=null)
+            hw.setTopNode(maze.getCells()[y][x]);
+        if(y>0 && maze.getCells()[y-1][x]!=null)
             hw.setBottomNode(maze.getCells()[y-1][x]);
         return hw;
     }
@@ -80,25 +85,30 @@ public class Node {
     public static Node verticalWall(int x , int y, Maze maze){
         Node vw = new Node(NodeType.VERTICAL_WALL,x,y,null,null,null,null);
 
-        if(x>0)
+        if(x>0 && maze.getCells()[y][x-1]!=null)
             vw.setLeftNode(maze.getCells()[y][x-1]);
-        if(x<maze.getWidth())
-            vw.setRightNode(maze.getCells()[y][x+1]);
+        if(x<maze.getWidth() && maze.getCells()[y][x]!=null)
+            vw.setRightNode(maze.getCells()[y][x]);
         return vw;
     }
 
     public static Node cell(int x, int y , Maze maze){
         Node c = new Node(NodeType.CELL,x,y,null,null,null,null);
-        c.setLeftNode(maze.getVerticalWalls()[y][x]);
-        c.setRightNode(maze.getVerticalWalls()[y][x+1]);
-        c.setBottomNode(maze.getHorizontalWalls()[y][x]);
-        c.setTopNode(maze.getHorizontalWalls()[y+1][x]);
+        //if(maze.getVerticalWalls()[y][x] != null)
+            c.setLeftNode(maze.getVerticalWalls()[y][x]);
+        //if(maze.getVerticalWalls()[y][x+1] != null)
+            c.setRightNode(maze.getVerticalWalls()[y][x+1]);
+        //if(maze.getHorizontalWalls()[y][x]!=null)
+            c.setBottomNode(maze.getHorizontalWalls()[y][x]);
+        //if(maze.getHorizontalWalls()[y+1][x]!=null)
+            c.setTopNode(maze.getHorizontalWalls()[y+1][x]);
         return c;
     }
 
 
+    public enum  NodeType{
+        HORIZONTAL_WALL,VERTICAL_WALL,CELL;
+    }
+
 }
 
-enum  NodeType{
-    HORIZONTAL_WALL,VERTICAL_WALL,CELL;
-}
