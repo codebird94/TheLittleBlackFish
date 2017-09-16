@@ -42,21 +42,21 @@ public class DFS extends Generator {
         //Random direction = new Random();
 
         while(!stack.isEmpty()){
-            app.log(TAG,"current cell: "+current.x+Integer.toString(current.y));
+            //app.log(TAG,"current cell: "+current.x+Integer.toString(current.y));
             seen[current.y][current.x] = true;
 
             Array<Constants.Direction> openWays = new Array<Constants.Direction>();
             if(current.x >0 && !seen[current.y][current.x-1]){
-                app.log(TAG,"left is open");
+                //app.log(TAG,"left is open");
                 openWays.add(Constants.Direction.LEFT);}
             if(current.x < raw.getWidth()-1 && !seen[current.y][current.x+1]){
-                app.log(TAG,"right is open");
+                //app.log(TAG,"right is open");
             openWays.add(Constants.Direction.RIGHT);}
             if(current.y >0 && !seen[current.y-1][current.x]){
-                app.log(TAG,"bottom is open");
+                //app.log(TAG,"bottom is open");
             openWays.add(Constants.Direction.DOWN);}
             if(current.y < raw.getHeight()-1 && !seen[current.y+1][current.x]){
-                app.log(TAG,"up is open");
+                //app.log(TAG,"up is open");
                 openWays.add(Constants.Direction.UP);}
 
             if(openWays.size>0){
@@ -64,31 +64,31 @@ public class DFS extends Generator {
                 Constants.Direction path = openWays.get(MathUtils.random(0,openWays.size-1));
                 switch (path){
                     case UP:
-                        app.log(TAG,"going upward");
-                        app.log(TAG,"next position: "+(current.y+1)+Integer.toString(current.x));
+                        //app.log(TAG,"going upward");
+                        //app.log(TAG,"next position: "+(current.y+1)+Integer.toString(current.x));
 
                         raw.removeWall(NodeType.HORIZONTAL_WALL,current.getTopNode().x,current.getTopNode().y);
                         current = (raw.getCells()[current.y+1][current.x]);
 
                         break;
                     case DOWN:
-                        app.log(TAG,"going downward");
-                        app.log(TAG,"next position: "+(current.y-1)+Integer.toString(current.x));
+                        //app.log(TAG,"going downward");
+                        //app.log(TAG,"next position: "+(current.y-1)+Integer.toString(current.x));
 
                         raw.removeWall(NodeType.HORIZONTAL_WALL,current.getBottomNode().x,current.getBottomNode().y);
                         current = raw.getCells()[current.y-1][current.x];
                         break;
                     case LEFT:
-                        app.log(TAG,"going left");
-                        app.log(TAG,"next position: "+current.y+Integer.toString(current.x-1));
+                        //app.log(TAG,"going left");
+                        //app.log(TAG,"next position: "+current.y+Integer.toString(current.x-1));
 
 
                         raw.removeWall(NodeType.VERTICAL_WALL,current.getLeftNode().x,current.getLeftNode().y);
                         current = raw.getCells()[current.y][current.x-1];
                         break;
                     case RIGHT:
-                        app.log(TAG,"going right");
-                        app.log(TAG,"next position: "+current.y+Integer.toString(current.x+1));
+                        //app.log(TAG,"going right");
+                        //app.log(TAG,"next position: "+current.y+Integer.toString(current.x+1));
 
                         raw.removeWall(NodeType.VERTICAL_WALL,current.getRightNode().x,current.getRightNode().y);
                         current = raw.getCells()[current.y][current.x+1];
@@ -98,11 +98,11 @@ public class DFS extends Generator {
                     default:
                         break;
                 }
-                app.log(TAG,"updated position: "+current.x+Integer.toString(current.y));
+                //app.log(TAG,"updated position: "+current.x+Integer.toString(current.y));
             }
             else{
                 current = stack.pop();
-                app.log(TAG,"stack popped");
+                //app.log(TAG,"stack popped");
             }
         }
 

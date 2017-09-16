@@ -115,7 +115,7 @@ project(":core") {
         outputs.dir outputDir
         doLast {
             delete(outputDir)
-            TexturePacker.process(inputDir, outputDir, "gigagal.pack")
+            TexturePacker.process(inputDir, outputDir, "littleBlackFish.pack")
         }
     }
 

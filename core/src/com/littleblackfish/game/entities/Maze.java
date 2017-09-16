@@ -82,7 +82,7 @@ public class Maze {
         this.horizontalWalls = new Node[height+1][width];
         this.verticalWalls = new Node[height][width+1];
 
-        //Gdx.app.log(TAG,Integer.toString(horizontalWalls.length)+','+Integer.toString(horizontalWalls[0].length));
+        ////Gdx.app.log(TAG,Integer.toString(horizontalWalls.length)+','+Integer.toString(horizontalWalls[0].length));
 
 
         for(int y=0 ; y<height;y++){
@@ -94,7 +94,7 @@ public class Maze {
         for(int y=0 ; y<height;y++){
             for (int x=0 ; x<width;x++){
                 Node c = cells[y][x];
-                Gdx.app.log(TAG,""+Integer.toString(c.x)+" "+Integer.toString(c.y));
+                ////Gdx.app.log(TAG,""+Integer.toString(c.x)+" "+Integer.toString(c.y));
             }
         }
 
@@ -125,10 +125,10 @@ public class Maze {
         for(int i=0 ; i<=height ; i++){
             for(int j=0; j< width ; j++){
                 if(horizontalWalls[i][j] != null){
-                   // Gdx.app.log(TAG,Integer.toString(i*height+j));
+                   // //Gdx.app.log(TAG,Integer.toString(i*height+j));
                     renderer.line(x+cellWidth*j,y+cellHeight*i,x+cellWidth*(j+1),y+cellHeight*i);
                     //if(!flag)
-                    //Gdx.app.log(TAG, Float.toString(x+cellWidth*j)+" , "+Float.toString(y+cellHeight*i)+" , "+
+                    ////Gdx.app.log(TAG, Float.toString(x+cellWidth*j)+" , "+Float.toString(y+cellHeight*i)+" , "+
                           //  Float.toString(x+cellWidth*(j+1))+" , "+Float.toString(y+cellHeight*i));
                 }
             }
@@ -196,7 +196,7 @@ public class Maze {
         switch (type){
             case HORIZONTAL_WALL:
                 wall = horizontalWalls[y][x];
-                Gdx.app.log(TAG,"removing h: "+Integer.toString(wall.x)+","+wall.y);
+                //Gdx.app.log(TAG,"removing h: "+Integer.toString(wall.x)+","+wall.y);
                 if(wall.getTopNode()!=null)
                     wall.getTopNode().setBottomNode(null);
                 if(wall.getBottomNode()!=null)
@@ -205,7 +205,7 @@ public class Maze {
                 break;
             case VERTICAL_WALL:
                 wall = verticalWalls[y][x];
-                Gdx.app.log(TAG,"removing v: "+Integer.toString(wall.x)+","+wall.y);
+                //Gdx.app.log(TAG,"removing v: "+Integer.toString(wall.x)+","+wall.y);
                 if(wall.getLeftNode()!=null)
                     wall.getLeftNode().setRightNode(null);
                 if(wall.getRightNode()!=null)
@@ -224,13 +224,14 @@ public class Maze {
         for(int i=0 ; i<=height ; i++) {
             for (int j = 0; j < width; j++) {
                 if (horizontalWalls[i][j] != null) {
-                    Gdx.app.log(TAG, Float.toString(x+cellWidth*j)+" , "+Float.toString(y+cellHeight*i)+" , "+
-                            Float.toString(x+cellWidth*(j+1))+" , "+Float.toString(y+cellHeight*i));
+                    //Gdx.app.log(TAG, Float.toString(x+cellWidth*j)+" , "+Float.toString(y+cellHeight*i)+" , "+
+                        //    Float.toString(x+cellWidth*(j+1))+" , "+Float.toString(y+cellHeight*i));
                 }
             }
         }
-        Gdx.app.log(TAG,"--------------------------------------");
+        //Gdx.app.log(TAG,"--------------------------------------");
         //draw the vertical lines
+        /*
         for(int i=0; i<height; i++){
             for(int j=0;j<=width;j++){
                 if(verticalWalls[i][j]!=null)
@@ -238,6 +239,35 @@ public class Maze {
                     Gdx.app.log(TAG,Integer.toString(i*height+j));
 
             }
+        }*/
+    }
+
+    public Node getCell(int x,int y){
+        if(x>=width || y>=height)
+            //Todo: throw index out of bound exception
+            return null;
+        return cells[y][x];
+    }
+
+    public Node getWall(Node.NodeType type, int x, int y){
+        switch (type){
+            case HORIZONTAL_WALL:
+                if(x>=width || y>height || x<0 || y<0)
+                    //Todo: throw index out of bound exception
+                    return null;
+                else
+                    return horizontalWalls[y][x];
+                //break;
+            case VERTICAL_WALL:
+                if(x>width || y>=height || x<0 || y<0)
+                    //Todo: throw index out of bound exception
+                    return null;
+                else
+                    return verticalWalls[y][x];
+                //break;
+            default:
+                //Todo: throw exception
+                return null;
         }
     }
 

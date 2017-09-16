@@ -12,9 +12,9 @@ public abstract class Generator {
 
     public Generator() {
 
-        Gdx.app.log(TAG, "craeted");
+        //Gdx.app.log(TAG, "Generator created");
     }
-
+    //Todo: use this instead of mazify()
     public Maze generate(int width,int height){
         Maze maze = new Maze(width,height);
         mazify(maze);
