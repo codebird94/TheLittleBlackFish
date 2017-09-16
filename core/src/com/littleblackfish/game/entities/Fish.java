@@ -49,7 +49,7 @@ public class Fish {
     }
 
     public void render(float offsetX, float offsetY ,ShapeRenderer renderer){
-        renderer.setColor(Color.RED);
+        renderer.setColor(Constants.SIMPLE_FISH_COLOR);
         renderer.circle((+Constants.FISH_SIZE/2)+offsetX+(position.x*CELL_SIZE),
                 (+Constants.FISH_SIZE/2)+offsetY+(position.y*CELL_SIZE),Constants.FISH_SIZE/2);
     }

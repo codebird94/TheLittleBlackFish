@@ -86,7 +86,7 @@ public class Maze {
 
         this.destinationY = height-1;
         this.destinationX = width-1;
-        Gdx.app.log(TAG,new Vector2(destinationX,destinationY).toString());
+        //Gdx.app.log(TAG,new Vector2(destinationX,destinationY).toString());
         this.originY=0;
         this.originX=0;
         Gdx.app.log(TAG,new Vector2(originX,originY).toString());
@@ -134,7 +134,22 @@ public class Maze {
             for(int j=0; j< width ; j++){
                 if(horizontalWalls[i][j] != null){
                    // //Gdx.app.log(TAG,Integer.toString(i*height+j));
-                    renderer.line(x+cellWidth*j,y+cellHeight*i,x+cellWidth*(j+1),y+cellHeight*i);
+
+                    //Todo: remove outer walls of origin and destination cells
+
+                    /*if(originX==j && (originY==i || i == originY+1)){
+                        renderer.setColor(Color.RED);
+                        renderer.line(x+cellWidth*j,y+cellHeight*i,x+cellWidth*(j+1),y+cellHeight*i);
+                        renderer.setColor(Color.BLUE);
+                    }
+                    else if(destinationX==j && (destinationY==i || i == destinationY+1)){
+                        renderer.setColor(Color.GREEN);
+                        renderer.line(x+cellWidth*j,y+cellHeight*i,x+cellWidth*(j+1),y+cellHeight*i);
+                        renderer.setColor(Color.BLUE);
+                    }
+                    else {*/
+                        renderer.line(x + cellWidth * j, y + cellHeight * i, x + cellWidth * (j + 1), y + cellHeight * i);
+                    //}
                     //if(!flag)
                     ////Gdx.app.log(TAG, Float.toString(x+cellWidth*j)+" , "+Float.toString(y+cellHeight*i)+" , "+
                           //  Float.toString(x+cellWidth*(j+1))+" , "+Float.toString(y+cellHeight*i));
@@ -146,42 +161,29 @@ public class Maze {
         for(int i=0; i<height; i++){
             for(int j=0;j<=width;j++){
                 if(verticalWalls[i][j]!=null) {
-                    if ((originY - i <= 1 &&  i - originY <= 1) && (j - originX <= 1 && originX - j <= 1)) {
+                    /*if ( originY == i && (originX == j || j==originX+1)) {
                         renderer.setColor(Color.RED);
                         renderer.line(x + cellWidth * j, y + cellHeight * i, x + cellWidth * j, y + cellHeight * (i + 1));
                         renderer.setColor(Color.BLUE);
                     }
-                    if ((destinationY - i <= 1 && i - destinationY <= 1) && (j - destinationX <= 1 &&  destinationX - j <= 1)) {
+                    else if (destinationY == i && (destinationX == j || j==destinationX+1)) {
+                        Gdx.app.log(TAG,"dest");
                         renderer.setColor(Color.GREEN);
                         renderer.line(x + cellWidth * j, y + cellHeight * i, x + cellWidth * j, y + cellHeight * (i + 1));
                         renderer.setColor(Color.BLUE);
-                    } else
+                    } else {*/
                         renderer.line(x + cellWidth * j, y + cellHeight * i, x + cellWidth * j, y + cellHeight * (i + 1));
+                    //}
                 }
             }
         }
-        /*
+        renderer.end();
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Color.RED);
-        renderer.line(x+cellWidth*destinationX,y+cellHeight*destinationY,x+cellWidth*destinationX,
-                y+cellHeight*(destinationY+1));
-        renderer.line(x+cellWidth*destinationX,y+cellHeight*(1+destinationY),x+cellWidth*(destinationX+1),
-                y+cellHeight*(destinationY+1));
-        renderer.line(x+cellWidth*(1+destinationX),y+cellHeight*(1+destinationY),x+cellWidth*(destinationX+1),
-                y+cellHeight*(destinationY));
-        renderer.line(x+cellWidth*(1+destinationX),y+cellHeight*destinationY,x+cellWidth*destinationX,
-                y+cellHeight*(destinationY));
-
+        renderer.rect(x + cellWidth*originX , y + cellHeight * originY , cellWidth , cellHeight);
         renderer.setColor(Color.GREEN);
-        renderer.line(x+cellWidth*originX,y+cellHeight*originY,x+cellWidth*originX,
-                y+cellHeight*(originY+1));
-        renderer.line(x+cellWidth*originX,y+cellHeight*(1+originY),x+cellWidth*(originX+1),
-                y+cellHeight*(originY+1));
-        renderer.line(x+cellWidth*(1+originX),y+cellHeight*(1+originY),x+cellWidth*(originX+1),
-                y+cellHeight*(originY));
-        renderer.line(x+cellWidth*(1+originX),y+cellHeight*originY,x+cellWidth*originX,
-                y+cellHeight*(originY));
-                */
-
+        renderer.rect(x + cellWidth*destinationX , y + cellHeight * destinationY , cellWidth , cellHeight);
+        
     }
 /*
     public void removeNode(NodeType type, int x , int y){

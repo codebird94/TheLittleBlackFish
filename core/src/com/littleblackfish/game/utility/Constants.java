@@ -10,9 +10,11 @@ public class Constants {
     //Maze drawing
     public static final float WORLD_SIZE = 400;
     public static final float MAZE_MARGIN = 20;
-    public static final float CELL_SIZE = 36;
-    public static final int DEFAULT_MAZE_WIDTH = 10;
-    public static final int DEFAULT_MAZE_HEIGHT = 10;
+
+    public static final int DEFAULT_MAZE_WIDTH = 25;
+    public static final int DEFAULT_MAZE_HEIGHT = 25;
+
+    public static final float CELL_SIZE = (WORLD_SIZE-2*MAZE_MARGIN)/DEFAULT_MAZE_HEIGHT;
 
     //the fish
     public static final float FISH_SIZE = CELL_SIZE;
@@ -26,6 +28,7 @@ public class Constants {
 
 
     public static final Color BACKGROUND_COLOR = new Color(0.906f,0.902f,0.988f,1);
+    public static final Color SIMPLE_FISH_COLOR = Color.BLACK;
 
     public static final String TEXTURE_ATLAS = "images/littleBlackFish.pack.atlas";
 
