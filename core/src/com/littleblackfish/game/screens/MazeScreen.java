@@ -28,8 +28,7 @@ public class MazeScreen implements Screen{
     ShapeRenderer renderer;
     SpriteBatch batch;
 
-
-
+    //Todo: adjust maze and screen sizes
 
     public MazeScreen(int mazeWidth, int mazeHeight, Generator generator){
         renderer = new ShapeRenderer();

@@ -11,8 +11,8 @@ public class Constants {
     public static final float WORLD_SIZE = 400;
     public static final float MAZE_MARGIN = 20;
     public static final float CELL_SIZE = 36;
-    public static final int DEFAULT_MAZE_WIDTH = 100;
-    public static final int DEFAULT_MAZE_HEIGHT = 100;
+    public static final int DEFAULT_MAZE_WIDTH = 10;
+    public static final int DEFAULT_MAZE_HEIGHT = 10;
 
     //the fish
     public static final float FISH_SIZE = CELL_SIZE;

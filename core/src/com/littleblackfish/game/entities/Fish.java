@@ -80,6 +80,9 @@ public class Fish {
             velocity.set(0,0);
             position.set(lastPos.x,lastPos.y);
         }
+
+        victory();
+
     }
 
     /*
@@ -132,6 +135,15 @@ public class Fish {
             if(maze.getWall(Node.NodeType.VERTICAL_WALL,x,y2)!=null && position.y%1.0<(1.0-0.05)){
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean victory(){
+        if(((int)position.x) == maze.getDestinationX() &&
+                ((int)position.y)==maze.getDestinationY()) {
+            Gdx.app.log(TAG, "VICTORY!");
+            return true;
         }
         return false;
     }

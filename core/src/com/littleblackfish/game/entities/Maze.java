@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
 
@@ -23,10 +24,10 @@ public class Maze {
     private int width;
     private int height;
 
-    private int originX=0;
-    private int originY=0;
-    private int destinationX=width-1;
-    private int destinationY=height-1;
+    private int originX;
+    private int originY;
+    private int destinationX;
+    private int destinationY;
 
     public int getOriginX(){
        return originX;
@@ -82,6 +83,13 @@ public class Maze {
         this.horizontalWalls = new Node[height+1][width];
         this.verticalWalls = new Node[height][width+1];
 
+
+        this.destinationY = height-1;
+        this.destinationX = width-1;
+        Gdx.app.log(TAG,new Vector2(destinationX,destinationY).toString());
+        this.originY=0;
+        this.originX=0;
+        Gdx.app.log(TAG,new Vector2(originX,originY).toString());
         ////Gdx.app.log(TAG,Integer.toString(horizontalWalls.length)+','+Integer.toString(horizontalWalls[0].length));
 
 
